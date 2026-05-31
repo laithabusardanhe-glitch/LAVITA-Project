@@ -9,7 +9,9 @@ import {
   MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useNavigate } from "react-router-dom";
 function Navbar() {
+   const navigate = useNavigate();
   return (
     <AppBar position="sticky">
       
@@ -21,10 +23,14 @@ function Navbar() {
         flexWrap:"wrap",
         flexDirection:"row",
       }}>
+        <img src="../../../src/assets/laita.jpg" style={{
+          width:"50px" ,
+         marginLeft:"100px",
+        }} />
         <Typography variant="h4" sx={{ flexGrow: 1,
             mr:30,
          }}>
-          LAVETA
+          LAVITA
         </Typography>
 
         <Box>
@@ -36,9 +42,9 @@ function Navbar() {
     flexWrap:"wrap"
 
             }}>
-          <MenuItem>Home </MenuItem>
+          <MenuItem Button onClick={() => navigate("/") }>Home </MenuItem>
           <MenuItem >Contact</MenuItem>
-          <MenuItem>Menu</MenuItem>
+          <MenuItem Button onClick={() => navigate("/menu") }>Menu</MenuItem>
           <MenuItem>About Us</MenuItem>
             </MenuList>
         </Box>
