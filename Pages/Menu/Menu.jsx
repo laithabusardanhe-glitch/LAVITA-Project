@@ -9,9 +9,10 @@ function Menu(){
 return(<>
 
 <Navbar/>
-<Typography sx={{
+<Typography variant='h4' sx={{
     padding:5
-}}>THIS IS THE MENU PAGE</Typography>
+}}>
+    Perfume Menu</Typography>
 <PerfumeCards/>
 
 

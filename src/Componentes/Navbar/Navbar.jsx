@@ -10,10 +10,22 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
+import { useAuth } from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
+import Theme from "../Theme/Theme";
+
 function Navbar() {
    const navigate = useNavigate();
+   const {logout} = useAuth();
+   const handleOut =  () => {
+    logout();
+    toast.success("Logout is seccessfully");
+  }
+  const {currentUser} = useContext(UserContext);
   return (
-    <AppBar position="sticky">
+    <AppBar  id="navbar" position="sticky" >
       
       <Toolbar sx={{
         display:"flex",
@@ -25,10 +37,11 @@ function Navbar() {
       }}>
         <img src="../../../src/assets/laita.jpg" style={{
           width:"50px" ,
-         marginLeft:"100px",
+         marginLeft:"50px",
+         borderRadius:30
         }} />
         <Typography variant="h4" sx={{ flexGrow: 1,
-            mr:30,
+            mr:2,
          }}>
           LAVITA
         </Typography>
@@ -42,16 +55,26 @@ function Navbar() {
     flexWrap:"wrap"
 
             }}>
-          <MenuItem Button onClick={() => navigate("/") }>Home </MenuItem>
-          <MenuItem >Contact</MenuItem>
-          <MenuItem Button onClick={() => navigate("/menu") }>Menu</MenuItem>
-          <MenuItem>About Us</MenuItem>
+          <MenuItem onClick={() => navigate("/") }>Home </MenuItem>
+          <MenuItem onClick={() => navigate("/contact") }>Contact</MenuItem>
+          <MenuItem  onClick={() => navigate("/menu") }>Menu</MenuItem>
+          <MenuItem onClick={() => navigate("/about/us") }>About Us</MenuItem>
+          <Theme/>
+          {!currentUser ? (
+            <>
+          <MenuItem  onClick={() => navigate("/register") }>Register</MenuItem>
+          <MenuItem  onClick={() => navigate("/login") }>Login</MenuItem>
+
+        </>
+          ) : (
+            <MenuItem  onClick={handleOut}>Logout</MenuItem>
+          )}
             </MenuList>
         </Box>
 
       </Toolbar>
     </AppBar>
-  );
+  ); 
 }
 
 export default Navbar;

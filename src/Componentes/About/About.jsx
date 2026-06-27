@@ -8,12 +8,17 @@ import sovageImg from "../../assets/sovage.jpg";
 import blueImg from "../../assets/blue.jpg";
 import acquaImg from "../../assets/acqua.jpg";
 import { Link } from "react-router-dom";
-
+import { useContext } from "react";
+import { UserContext } from "../../../src/Context/UserContext.jsx";
 
 function About(){
+  const {currentUser} = useContext(UserContext);
   return (
     <>
-      <h1>WELCOME TO LAVITA</h1>
+    <Typography variant='h3'sx={{
+      p:2,
+    }} >Hello {currentUser?.name}, Welcome To Lavita</Typography>
+    
       <p style={{ marginTop: 20 }}>
         Discover a world of luxury fragrances crafted to leave a lasting impression.
         At Lavita, we bring you elegant perfumes that blend sophistication, freshness,

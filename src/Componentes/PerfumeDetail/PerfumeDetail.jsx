@@ -11,68 +11,69 @@ import gucciImg from "../../assets/gucci.jpg";
 import bossImg from "../../assets/boss.jpg";
 import Menu from "../../../Pages/Menu/Menu";
 import PerfumeCards from "../../../Pages/PerfumeCards/PerfumeCards.jsx";
+import { useEffect } from "react";
 const perfumes = {
   sauvage: {
     name: "Dior Sauvage",
     price: "$110",
     image: sovageImg,
-    description: "Dior Sauvage is a fresh and spicy fragrance with a strong and masculine scent. Perfect for daily use, night outings, and special occasions.",
+    description: "Dior Sauvage is a fresh and spicy fragrance with a strong and masculine scent,It is perfect for daily use, night outings, and special occasions, The best seasons to wear it are spring, fall, and cool summer nights.",
     composition: ["Bergamot", "Pepper", "Lavender", "Sichuan Pepper", "Ambroxan", "Cedar"]
   },
   bleu: {
     name: "Bleu de Chanel",
     price: "$120",
     image: blueImg,
-    description: "Bleu de Chanel is an elegant and clean fragrance with a smooth woody scent. Great for formal events, work, and classy occasions.",
+    description: "Bleu de Chanel is an elegant and clean fragrance with a smooth woody scent, It is great for formal events, work, and classy occasions, It works best during spring, fall, and winter.",
     composition: ["Lemon", "Mint", "Ginger", "Nutmeg", "Sandalwood", "Cedar"]
   },
   acqua: {
     name: "Acqua di Giò",
     price: "$95",
     image: acquaImg,
-    description: "Acqua di Giò is a light and refreshing fragrance inspired by the sea. Ideal for daytime, casual outings, and hot weather.",
+    description: "Acqua di Giò is a light and refreshing fragrance inspired by the sea, It is ideal for daytime, casual outings, and hot weather,The best time to wear it is during summer and warm spring days.",
     composition: ["Jasmine", "Lime", "Marine Notes", "Peach", "Cedar", "Musk"]
   },
   eros: {
     name: "Versace Eros",
     price: "$90",
     image: erosImg,
-    description: "Versace Eros is a fresh and powerful fragrance with notes of mint, green apple, and tonka bean. Perfect for parties, romantic dates, and night outings.",
+    description: "Versace Eros is a fresh and powerful fragrance with notes of mint, green apple, and tonka bean, It is perfect for parties, romantic dates, and night outings, Best seasons to wear it are fall, winter, and cool summer evenings.",
     composition: ["Mint", "Green Apple", "Tonka Bean", "Geranium", "Vanilla", "Cedarwood"]
   },
   spicebomb: {
     name: "Viktor & Rolf Spicebomb",
     price: "$115",
     image: spicebombImg,
-    description: "Spicebomb is an explosive spicy fragrance with cinnamon, pink pepper, and tobacco. Strong and masculine, perfect for evening wear.",
+    description: "Viktor & Rolf Spicebomb is an explosive spicy fragrance with notes of cinnamon, pink pepper, and tobacco, Strong and masculine, perfect for evening wear and special occasions, Best seasons to wear it are fall and winter.",
     composition: ["Pink Pepper", "Bergamot", "Cinnamon", "Saffron", "Tobacco", "Vetiver"]
   },
   onemillion: {
     name: "Paco Rabanne One Million",
     price: "$85",
     image: oneMillionImg,
-    description: "One Million is a sweet, spicy, and luxurious fragrance with leather and amber notes. Bold and attention-grabbing.",
+    description: " Paco Rabanne One Million is a sweet, spicy, and luxurious fragrance with leather and amber notes, Bold and attention-grabbing, ideal for parties and night outings, Works best during fall and winter seasons.",
     composition: ["Blood Mandarin", "Peppermint", "Rose", "Cinnamon", "Leather", "Amber"]
   },
   intensely: {
     name: "You Intensely",
     price: "$120",
     image: intenselyImg,
-    description: "You Intensely is a captivating fragrance with fruity and smoky accords, balanced by warm woods. Designed for confident men.",
+    description: "You Intensely is a captivating fragrance with fruity and smoky accords, balanced by warm woods, Designed for confident men who want to stand out, Best worn during fall and winter, especially for formal occasions.",
     composition: ["Cardamom", "Bergamot", "Lavender", "Sage", "Vetiver", "Amberwood"]
   },
   gucci: {
     name: "Gucci Guilty",
     price: "$100",
     image: gucciImg,
-    description: "Gucci Guilty is a modern and bold fragrance with citrus, lavender, and patchouli notes. Great for daily wear and evening events.",
+    description: "Gucci Guilty is a modern and bold fragrance with citrus, lavender, and patchouli notes, Great for daily wear, casual outings, and evening events, Works best during spring and fall seasons.",
     composition: ["Lemon", "Lavender", "Orange Blossom", "Neroli", "Patchouli", "Cedar"]
   },
   boss: {
     name: "Hugo Boss Bottled",
     price: "$120",
     image: bossImg,
-    description: "Boss Bottled is a timeless fragrance with notes of apple, cinnamon, and sandalwood. Balanced and versatile for office and casual wear.",
+    description: "Hugo Boss Bottled is a timeless fragrance with notes of apple, cinnamon, and sandalwood, Balanced and versatile, perfect for office wear and casual outings, Best seasons to wear it are spring and fall.",
     composition: ["Apple", "Citrus", "Cinnamon", "Clove", "Sandalwood", "Cedarwood"]
   }
 };
@@ -82,16 +83,19 @@ const colors = ["#e57373", "#f06292", "#ba68c8", "#64b5f6", "#4db6ac", "#81c784"
 function PerfumeDetail() {
   const { id } = useParams();
   const perfume = perfumes[id];
+ useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!perfume) return <Typography>Perfume not found</Typography>;
 
   return (
     <Container sx={{ padding: 5 }}>
       <Box sx={{ display: "flex", gap: 4, alignItems: "flex-start" }}>
-        {/* صورة العطر */}
+       
         <img src={perfume.image} alt={perfume.name} style={{ width: "300px", borderRadius: "10px" }} />
 
-        {/* النصوص */}
+      
         <Box>
           <Typography variant="h4" sx={{ marginBottom: 2 }}>
             {perfume.name} - {perfume.price}
