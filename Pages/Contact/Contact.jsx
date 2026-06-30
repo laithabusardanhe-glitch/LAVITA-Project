@@ -7,6 +7,8 @@ import {
   Grid,
   TextField,
   Button,
+  Card,
+  CardContent,
 } from "@mui/material";
 import Navbar from "../../src/Componentes/Navbar/Navbar";
 import EmailIcon from "@mui/icons-material/Email";
@@ -16,7 +18,7 @@ import { MessageContext } from "../../src/Context/MessageContext.jsx";
 import toast from "react-hot-toast";
 
 export default function Contact() {
-  const { messages, setMessages } = useContext(MessageContext);
+  const { messages, setMessages, approvedMessages } = useContext(MessageContext);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = (e) => {
@@ -79,7 +81,7 @@ export default function Contact() {
               </Box>
             </Grid>
 
-            {/* Contact Form */}
+          
             <Grid item xs={12} md={6}>
               <Typography variant="h4" gutterBottom color="primary">
                 Send Us a Message
@@ -119,6 +121,30 @@ export default function Contact() {
             </Grid>
           </Grid>
         </Paper>
+
+        
+        {approvedMessages && approvedMessages.length > 0 && (
+          <Paper elevation={4} sx={{ p: 4, mt: 5 }}>
+            <Typography variant="h4" gutterBottom color="primary" align="center">
+              Approved Messages
+            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
+              {approvedMessages.map((msg) => (
+                <Card key={msg.id} elevation={3}>
+                  <CardContent>
+                    <Typography variant="h6">{msg.name}</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {msg.email}
+                    </Typography>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
+                      {msg.message}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ))}
+            </Box>
+          </Paper>
+        )}
       </Container>
     </>
   );

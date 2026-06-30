@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 import { MessageContext } from "../../../../Context/MessageContext.jsx";
 
 export default function DisplayMassege() {
-  const { messages, setMessages } = useContext(MessageContext);
+  const { messages, setMessages, approvedMessages, setApprovedMessages } = useContext(MessageContext);
   const [openViewDialog, setOpenViewDialog] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(null);
@@ -40,6 +40,12 @@ export default function DisplayMassege() {
     toast.success("Message deleted successfully");
     setOpenDeleteDialog(false);
     setSelectedMessage(null);
+  };
+
+  const handleApprove = (msg) => {
+  
+    setApprovedMessages([...approvedMessages, msg]);
+    toast.success("Message approved successfully");
   };
 
   return (
@@ -87,6 +93,14 @@ export default function DisplayMassege() {
                       </Button>
                       <Button
                         variant="contained"
+                        color="success"
+                        size="small"
+                        onClick={() => handleApprove(msg)}
+                      >
+                        Approve
+                      </Button>
+                      <Button
+                        variant="contained"
                         color="error"
                         size="small"
                         onClick={() => handleDeleteClick(msg)}
@@ -102,6 +116,7 @@ export default function DisplayMassege() {
         )}
       </Paper>
 
+    
       <Dialog open={openViewDialog} onClose={() => setOpenViewDialog(false)}>
         <DialogTitle>Message Details</DialogTitle>
         <DialogContent>

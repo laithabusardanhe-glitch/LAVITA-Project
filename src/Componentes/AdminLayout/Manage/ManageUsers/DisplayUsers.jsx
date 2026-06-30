@@ -118,7 +118,6 @@ export default function DisplayUsers() {
         )}
       </Paper>
 
-      {/* Dialog للحذف */}
       {openDialog === true && (
         <Dialog open={openDialog} onClose={handleCancelDelete}>
           <DialogTitle>Confirm Delete</DialogTitle>
@@ -138,7 +137,7 @@ export default function DisplayUsers() {
         </Dialog>
       )}
 
-      {/* Dialog للتعديل */}
+      
       {openDialog === "edit" && (
         <Dialog open={true} onClose={handleCancelDelete}>
           <DialogTitle>Edit User Role</DialogTitle>
